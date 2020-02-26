@@ -3,11 +3,11 @@
 namespace DigitalClosuxe\ValueObject;
 
 /**
- * Class PersonValueObject
+ * Class Person
  *
  * @package DigitalClosuxe\ValueObject
  */
-abstract class PersonValueObject
+abstract class Person
 {
     /**
      * @var string $firstName
