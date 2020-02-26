@@ -9,6 +9,9 @@ namespace DigitalClosuxe\ValueObject\Concern;
  */
 trait ContactProperties
 {
+    /**
+     * @param $firstName
+     */
     public function setFirstName($firstName)
     {
         if(!property_exists(get_called_class(), 'firstName')){
@@ -18,6 +21,9 @@ trait ContactProperties
         $this->firstName = $firstName;
     }
 
+    /**
+     * @param $lastName
+     */
     public function setLastName($lastName)
     {
         if(!property_exists(get_called_class(), 'lastName')){
