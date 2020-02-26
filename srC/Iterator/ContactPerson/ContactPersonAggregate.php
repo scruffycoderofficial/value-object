@@ -7,10 +7,29 @@ namespace DigitalClosuxe\ValueObject\Iterator\ContactPerson;
  *
  * @package DigitalClosuxe\ValueObject\Iterator\ContactPerson
  */
-abstract class ContactPersonAggregate
+class ContactPersonAggregate extends PersonAggregate
 {
+    /**
+     * @var $_personIterator
+     */
+    private $_personIterator;
+
+    /**
+     * @var $_personAggreagate
+     */
+    private $_personAggreagate;
+
+    public function __construct(array $data)
+    {
+        $this->_personAggreagate = $data;
+    }
+
     /**
      * @return mixed
      */
-    abstract public function createIterator();
+    public function createIterator()
+    {
+        $this->_personIterator = new ContactPersonIterator($this->_personAggreagate);
+        return $this->_personIterator;
+    }
 }
