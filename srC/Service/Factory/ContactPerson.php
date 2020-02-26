@@ -3,6 +3,7 @@
 namespace DigitalClosuxe\ValueObject\Service\Factory;
 
 use DigitalClosuxe\ValueObject\Service\Contact;
+use DigitalClosuxe\ValueObject\Service\EventData\ContactCreated;
 
 /**
  * Class ContactPerson
@@ -24,5 +25,19 @@ final class ContactPerson
         $contact->setLastName($lastName);
 
         return $contact;
+    }
+
+    /**
+     * @param ContactCreated $eventData
+     * @return Contact
+     * @throws \Exception
+     */
+    static public function createFromDomainEvent(ContactCreated $eventData)
+    {
+        if(!$eventData->validateProperties()){
+            throw new \Exception("Invalid expected value object service properties.");
+        }
+
+        return static::createContact($eventData['firstName'], $eventData['lastName']);
     }
 }
