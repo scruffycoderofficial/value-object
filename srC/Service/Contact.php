@@ -3,6 +3,8 @@
 namespace DigitalClosuxe\ValueObject\Service;
 
 use DigitalClosuxe\ValueObject\Person;
+use DigitalClosuxe\ValueObject\Contract\IdentityAware;
+use DigitalClosuxe\ValueObject\Contract\ContactIdentifier;
 use DigitalClosuxe\ValueObject\Concern\ContactProperties;
 
 /**
@@ -10,8 +12,10 @@ use DigitalClosuxe\ValueObject\Concern\ContactProperties;
  *
  * @package DigitalClosuxe\ValueObject\Service
  */
-class Contact extends Person
+class Contact extends Person implements IdentityAware
 {
+    protected $id;
+
     use ContactProperties;
 
     /**
@@ -30,8 +34,25 @@ class Contact extends Person
         return $this->firstName;
     }
 
+    /**
+     * Returns full names of this Contact Person
+     *
+     * NB: This method only takes into account the first and
+     *     last name and nothing else
+     *
+     * @return string
+     */
     public function getFullnames()
     {
         return sprintf("%s %s", $this->getFirstName(), $this->getLastname());
+    }
+
+    /** {@inheritDoc} */
+    public function setIdentity(ContactIdentifier $identifier)
+    {
+        if(!is_null($this->id)){
+            return;
+        }
+        $this->id = $identifier;
     }
 }
