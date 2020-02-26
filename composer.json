@@ -1,0 +1,12 @@
+{
+  "name": "digital-closure/value-object",
+  "description": "Describes implementations of various Value Object implementations for Digital Closuxe",
+  "config": {
+    "vendor-dir": "lib"
+  },
+  "autoload": {
+    "psr-4": {
+      "DigitalClosuxe\\ValueObject\\": "src/"
+    }
+  }
+}
